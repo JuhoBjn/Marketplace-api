@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Marketplace</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+            <h1 style="text-align: center">Marketplace</h1>
+        </div>
+        <div>
+            <form method="get" action="/users">
+                <button>Users</button>
+            </form>
+            <br>
+            <form method="get" action="/createlisting">
+                <button>Create listing</button>
+            </form>
+        </div>
+        <br>
+        <div>
+            <h2>Listings</h2>
+            <ul>
+                <li th:each="listing:${listings}">
+                    <h3 th:text="${listing.title}">title</h3>
+                    <span th:text="${listing.content}">content</span>
+                    <br>
+                    <span th:text="'Price: ' + ${{listing.price}}">price</span>
+                    <a th:href="@{userpage/{aUserID}(aUserID=${listing.userID})}" th:text="${listing.userName}">User</a>
+                    <form method="get" action="/updatelisting">
+                        <input type="hidden" name="aListingID" th:value="${listing.listingID}">
+                        <button>Edit listing</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>

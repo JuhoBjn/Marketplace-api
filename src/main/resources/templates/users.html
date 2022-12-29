@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+    <head xmlns:th="http://www.thymeleaf.org">
+        <title>Marketplace - Users</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+            <h1>All users:</h1>
+            <ul>
+                <li th:each="user:${users}">
+                    <a th:href="@{userpage/{aUserID}(aUserID=${user.userID})}" th:text="${user.name}">User</a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <h3>Create new user</h3>
+            <form method="post" action="/createuser">
+                <input type="text" name="aName" placeholder="Enter name" required>
+                <input type="text" name="aEmail" placeholder="Enter email" required>
+                <input type="text" name="aAddress" placeholder="Enter address" required>
+                <input type="text" name="aPhone" placeholder="Enter phone number" required>
+                <button>Add new user</button>
+            </form>
+        </div>
+        <br>
+        <div>
+            <form method="get" action="/listings">
+                <button>Back</button>
+            </form>
+        </div>
+    </body>
+</html>
